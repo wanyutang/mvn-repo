@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.fun3w</groupId>
+		<artifactId>f3mm-boot</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+		<relativePath />
+		<!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.fun3w</groupId>
+	<artifactId>f3mm-init</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>f3mm-init</name>
+	<packaging>jar</packaging>
+	<description>f3mm-init project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<skipTests>true</skipTests>
+	</properties>
+
+	<dependencies>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env>prod</env>
+			</properties>
+			<build>
+				<plugins>
+					<!-- https://maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>3.0.0-M1</version>
+						<inherited>false</inherited>
+						<executions>
+							<execution>
+								<id>install:install-file</id>
+								<phase>install</phase>
+								<!-- <phase>validate</phase> -->
+								<goals>
+									<goal>install-file</goal>
+								</goals>
+								<configuration>
+									<file>${project.build.directory}/${project.build.finalName}.${project.packaging}</file>
+									<localRepositoryPath>${localRepositoryPath}</localRepositoryPath>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
